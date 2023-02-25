@@ -2,4 +2,5 @@ backend/.env
 backend/Include
 backend/Lib
 backend/Scripts
-backend/pyenv.cfg
+backend/pyvenv.cfg
+backend/database_crm.db
