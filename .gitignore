@@ -1,0 +1,5 @@
+backend/.env
+backend/Include
+backend/Lib
+backend/Scripts
+backend/pyenv.cfg
