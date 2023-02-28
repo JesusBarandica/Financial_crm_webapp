@@ -1,2 +1,5 @@
-from resource import Clientes as ClientesResource
-from resource import Cliente as ClienteResource
+from .Prospectos import Prospectos as ProspectosResource
+from .Prospectos import Prospecto as ProspectoResource
+from .Usuarios import Usuarios as  UsuariosResource
+from .Usuarios import Usuario as UsuarioResource
+

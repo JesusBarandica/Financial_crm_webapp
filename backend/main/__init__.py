@@ -6,9 +6,14 @@ from flask import Flask
 from dotenv import load_dotenv
 ###se importa SQLalchemy para crear base de dato desde entorno de desarrollo
 from flask_sqlalchemy import SQLAlchemy
+###se importa flask-restful para crear la api para las rutas de nuestros modelos
+from flask_restful import Api
 
 # instanciamos SQLAlchSQLAlchemyemy  para crear base datos.
 db = SQLAlchemy()
+
+#instanciamos nuestra api para crear rutas
+api = Api()
 
 def create_app():
 
@@ -40,6 +45,11 @@ def create_app():
     ### inicializamos las configuración que hicimos a nuestra base de datos y las aplicamos
     db.init_app(app)
 
+    import main.resources.Prospectos as resources  
+
+    api.add_resource(resources.Prospectos,"/prospectos")
+
+    api.init_app(app)
     
     return app
 

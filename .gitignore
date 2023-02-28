@@ -4,3 +4,5 @@ backend/Lib
 backend/Scripts
 backend/pyvenv.cfg
 backend/database_crm.db
+backend/__pycache__
+frontend/
