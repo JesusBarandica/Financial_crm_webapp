@@ -6,7 +6,7 @@ class Prospectos(db.Model):
     fecha_prospeccion = db.Column(db.DateTime,default=dt.datetime.now(), nullable=False)
     id = db.Column(db.Integer,primary_key=True,autoincrement=True,nullable=False,unique=True)
     Concesionario_aliado = db.Column(db.Integer,db.ForeignKey("aliados_comerciales.id"),nullable=False)
-    ejecutivo = db.Column(db.Integer,db.ForeignKey("usuario.id"),nullable=False)
+    ejecutivo = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
     tipo_identi = db.Column(db.SmallInteger, db.ForeignKey("tipo_documento.id"),nullable=False)
     identificacion = db.Column(db.Integer,nullable=False)
     nombre = db.Column(db.String(20), nullable=False)
