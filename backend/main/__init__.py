@@ -48,6 +48,7 @@ def create_app():
     import main.resources.Prospectos as resources  
 
     api.add_resource(resources.Prospectos,"/prospectos")
+    api.add_resource(resources.Prospecto,"/prospecto")
 
     api.init_app(app)
     

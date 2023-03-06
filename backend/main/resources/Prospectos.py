@@ -13,4 +13,10 @@ class Prospectos(Resource):
 ###se crea la subclase prospecto heredada de la clase Resource para crear las rutas de las peticiones especifica de nuestro
 ###modelo prospecto, se reuniran las operaciones que se ejecutaran a cada cliente en particular.
 class Prospecto(Resource):
-    pass
+    
+    def post(self):
+
+        prospecto = ProspectosModel.from_json(request.get_json())
+        db.session.add(prospecto)
+        db.session.commit()
+        return prospecto.to_json(), 201 

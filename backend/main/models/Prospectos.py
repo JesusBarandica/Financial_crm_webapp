@@ -3,7 +3,7 @@ import datetime as dt
 
 class Prospectos(db.Model):
     
-    fecha_prospeccion = db.Column(db.DateTime,default=dt.datetime.now(), nullable=False)
+    fecha_prospeccion = db.Column(db.DateTime, default= dt.datetime.now(), nullable=False)
     id = db.Column(db.Integer,primary_key=True,autoincrement=True,nullable=False,unique=True)
     Concesionario_aliado = db.Column(db.Integer,db.ForeignKey("aliados_comerciales.id"),nullable=False)
     ejecutivo = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
@@ -15,8 +15,65 @@ class Prospectos(db.Model):
     segundo_apellido = db.Column(db.String(50), nullable=False)
     celular = db.Column(db.String(15),nullable=False)
     email = db.Column(db.String(150), nullable=False)
-    perfil = db.Column(db.String(25), db.ForeignKey("perfiles.id"), nullable=False)
+    perfil = db.Column(db.Integer, db.ForeignKey("perfiles.id"), nullable=False)
     vendedor = db.Column(db.Integer, db.ForeignKey("vendedores.id"), nullable=False)
 
     def __repr__(self) -> str:
         return super().__repr__()
+    
+
+
+    def to_json(self):
+        prospecto = {
+            "fecha_prospeccion" : str(self.fecha_prospeccion),
+            "Concesionario_aliado": self.Concesionario_aliado,
+            "ejecutivo": self.ejecutivo,
+            "identificacion": self.identificacion,
+            "nombre": self.nombre,
+            "segundo_nombre": self.segundo_nombre,
+            "primer_apellido": self.primer_apellido,
+            "segundo_apellido": self.segundo_apellido,
+            "celular": self.celular,
+            "email": self.email,
+            "perfil": self.perfil,
+            "vendedor": self.vendedor
+        }
+        return prospecto
+
+    @staticmethod
+    def from_json(prospecto_json):
+
+        fecha_prospeccion = prospecto_json.get("fecha_prospeccion")
+        id = prospecto_json.get("id")
+        Concesionario_aliado = prospecto_json.get("Concesionario_aliado")
+        ejecutivo = prospecto_json.get("ejecutivo")
+        tipo_identi = prospecto_json.get("tipo_identi")
+        identificacion = prospecto_json.get("identificacion")
+        nombre = prospecto_json.get("nombre")
+        segundo_nombre = prospecto_json.get("segundo_nombre")
+        primer_apellido = prospecto_json.get("primer_apellido")
+        segundo_apellido = prospecto_json.get("segundo_apellido")
+        celular = prospecto_json.get("celular")
+        email = prospecto_json.get("email")
+        perfil = prospecto_json.get("perfil")
+        vendedor = prospecto_json.get("vendedor")
+
+        return Prospectos(
+            fecha_prospeccion = fecha_prospeccion,
+            id = id,
+            Concesionario_aliado = Concesionario_aliado,
+            ejecutivo = ejecutivo,
+            tipo_identi = tipo_identi,
+            identificacion = identificacion,
+            nombre = nombre,
+            segundo_nombre = segundo_nombre,
+            primer_apellido = primer_apellido,
+            segundo_apellido = segundo_apellido,
+            celular = celular,
+            email = email,
+            perfil = perfil,
+            vendedor = vendedor
+        )
+
+
+
