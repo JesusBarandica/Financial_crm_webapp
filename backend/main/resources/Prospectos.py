@@ -2,7 +2,9 @@
 from flask_restful import Resource
 ###importamos de flask jsonify para serializar objetos a formato json y request para poder recibir las peticiones del cliente
 from flask import jsonify, request 
+###importamos la base de datos
 from .. import db
+###importamos modelo objetivo, en este caso prospecto models
 from main.models import ProspectosModel
 
 ###se crea la subclase prospectos heredada de la clase Resource para crear las rutas de las peticiones especifica de nuestro

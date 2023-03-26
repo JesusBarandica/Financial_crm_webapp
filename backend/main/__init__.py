@@ -8,6 +8,10 @@ from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 ###se importa flask-restful para crear la api para las rutas de nuestros modelos
 from flask_restful import Api
+### se importa flask-jwtextends para crear los tokens y sesiones de usuario
+from flask_jwt_extended import JWTManager
+### para configurar el tiempo que dura la sesión
+import datetime
 
 # instanciamos SQLAlchSQLAlchemyemy  para crear base datos.
 db = SQLAlchemy()
@@ -15,10 +19,27 @@ db = SQLAlchemy()
 #instanciamos nuestra api para crear rutas
 api = Api()
 
+#instanciamos el jwtmanager para agregarla a la app
+jwt = JWTManager()
+
+#from flask import Blueprint, render_template
+
+#creación de Blueprint principal para inicio de sesión
+#principal = Blueprint("principal",__name__)
+
+#@principal.route("/")
+#def login():
+    #return  render_template("views/login.html")
+
+
+
 def create_app():
 
     ###instanciamos Flask y le colocamos el __name__ para que reconozca nuestra aplicación y sus modulos
-    app = Flask(__name__)
+    app = Flask(__name__,
+                template_folder="D:/CRM_FINANCIERO/frontend", 
+                static_folder="D:/CRM_FINANCIERO/frontend/static")
+
 
     ###cargamos variables de entorno para configurar nuestra app
     load_dotenv()
@@ -45,12 +66,36 @@ def create_app():
     ### inicializamos las configuración que hicimos a nuestra base de datos y las aplicamos
     db.init_app(app)
 
-    import main.resources.Prospectos as resources  
+    import main.resources.Prospectos as ResourcesProspectos  
+    import main.resources.Usuarios as ResourcesUsuarios
 
-    api.add_resource(resources.Prospectos,"/prospectos")
-    api.add_resource(resources.Prospecto,"/prospecto")
+    api.add_resource(ResourcesProspectos.Prospectos,"/prospectos")
+    api.add_resource(ResourcesProspectos.Prospecto,"/prospecto")
+    api.add_resource(ResourcesUsuarios.Usuario,"/usuario")
 
     api.init_app(app)
+
+    #registro pantalla principal cuando inicie aplicación
+    #app.register_blueprint(principal)
+
+    #registro de rutas de autenticación login y register
+    from main.auth import routes
+
+    #registro de blueprint auth que contiene las rutas de funciones login y register
+    app.register_blueprint(auth.routes.auth)
+
+
+    #importamos el paquete que contiene los modulos para renderizar plantillas
+    from main.route_templates import templates_html
+
+    app.register_blueprint(templates_html.menu)
+
+    
+    
+    app.config["SECRET_KEY"] = os.getenv("JWT_SECRET_KEY") 
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(seconds= int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES")))
+
+    jwt.init_app(app)
     
     return app
 
