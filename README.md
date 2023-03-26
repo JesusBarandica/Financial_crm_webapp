@@ -1,2 +1,3 @@
 # Financial_crm_webapp
-Desarrollo de CRM para la administración de clientes con herramientas de analítica de datos
+Desarrollo aplicación web para creación de CRM para la administración de clientes, con herramientas de gestion de clientes, herramientas de analítica de datos para
+la toma de decisiones.
