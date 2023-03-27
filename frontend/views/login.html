@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ url_for('static', filename='css/login_style.css') }}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+</head>
+<body class="body">
+    <section class = principal>
+        <div class="caja_logo">
+            <img class="logo" src="{{ url_for('static', filename='image/logo.svg') }}" alt="Logo empresarial">
+        </div>  
+        <br><br><br><br>
+        <div class="form-login">
+            <form action="{{ url_for('auth.login') }}" method="POST"  class="formulario" id="login-form">
+                <input class="campos" type="email" name="email" placeholder="email">
+                <br><br><br><br>
+                <input class="campos" type="password" name="password" placeholder="password">
+                <br><br><br>
+                <input class= boton type="submit" value="Iniciar sesión">
+            </form>
+        </div>
+    </section>
+</body>
+</html>

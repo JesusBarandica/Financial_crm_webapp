@@ -22,16 +22,6 @@ api = Api()
 #instanciamos el jwtmanager para agregarla a la app
 jwt = JWTManager()
 
-#from flask import Blueprint, render_template
-
-#creación de Blueprint principal para inicio de sesión
-#principal = Blueprint("principal",__name__)
-
-#@principal.route("/")
-#def login():
-    #return  render_template("views/login.html")
-
-
 
 def create_app():
 
@@ -66,23 +56,25 @@ def create_app():
     ### inicializamos las configuración que hicimos a nuestra base de datos y las aplicamos
     db.init_app(app)
 
-    import main.resources.Prospectos as ResourcesProspectos  
+    #import main.resources.Prospectos as ResourcesProspectos  
     import main.resources.Usuarios as ResourcesUsuarios
 
-    api.add_resource(ResourcesProspectos.Prospectos,"/prospectos")
-    api.add_resource(ResourcesProspectos.Prospecto,"/prospecto")
+    #api.add_resource(ResourcesProspectos.Prospectos,"/prospectos")
+    #api.add_resource(ResourcesProspectos.Prospecto,"/addprospecto")
     api.add_resource(ResourcesUsuarios.Usuario,"/usuario")
 
     api.init_app(app)
 
-    #registro pantalla principal cuando inicie aplicación
-    #app.register_blueprint(principal)
+    #registro de blueprint  para recursos para modelo de prospectos
+    from main.resources import Prospectos
+
+    app.register_blueprint(Prospectos.Resource_prospectos)
 
     #registro de rutas de autenticación login y register
     from main.auth import routes
 
     #registro de blueprint auth que contiene las rutas de funciones login y register
-    app.register_blueprint(auth.routes.auth)
+    app.register_blueprint(routes.auth)
 
 
     #importamos el paquete que contiene los modulos para renderizar plantillas
