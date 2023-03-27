@@ -39,7 +39,8 @@ def login():
 
         data = {
             "id": str(usuario.id),
-            "email": usuario.email,
+            "nombre": usuario.nombre,
+            "apellido": usuario.apellido,
             "access_token": access_token,
             "role": usuario.role
         }

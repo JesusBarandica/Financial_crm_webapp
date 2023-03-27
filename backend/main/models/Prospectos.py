@@ -45,8 +45,8 @@ class Prospectos(db.Model):
 
         fecha_prospeccion = prospecto_json.get("fecha_prospeccion")
         id = prospecto_json.get("id")
-        Concesionario_aliado = prospecto_json.get("Concesionario_aliado")
-        ejecutivo = prospecto_json.get("ejecutivo")
+        Concesionario_aliado = prospecto_json.get("concesionario_aliado")
+        ejecutivo = 
         tipo_identi = prospecto_json.get("tipo_identi")
         identificacion = prospecto_json.get("identificacion")
         nombre = prospecto_json.get("nombre")

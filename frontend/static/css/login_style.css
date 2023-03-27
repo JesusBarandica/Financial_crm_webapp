@@ -1,0 +1,42 @@
+.body{
+    background-color:  #fdfbf7;
+}
+.principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.logo{
+    margin-top: 40px;
+}
+
+.form-login{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-content: center;
+    border-style: solid;
+    border-width: 3px;
+    width: 450px;
+    height: 400px;
+}
+
+.formulario{
+    justify-content: center;
+    align-content: center;
+    margin-top: 90px;
+}
+
+.campos{
+    width: 300px;
+    height: 20px;
+    border-radius: 20px;
+}
+.boton{
+    width: 150px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 75px;
+}

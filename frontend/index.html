@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ url_for('static', filename='css/index_style.css') }}"  rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard principal</title>
+    <script src="https://kit.fontawesome.com/c0ea10251b.js" crossorigin="anonymous"></script>
+</head>
+<body id="body">
+    <header >
+        
+    </header>
+
+    <div class="menu-site" id="menu_site">
+        <div class="icon-menu">
+            <i class="fa-solid fa-bars" id="btn_open"></i>
+        </div>
+        <div class="menu-option">
+            <a href="" class="selected">
+                <div class="option">
+                    <i class="fa-solid fa-house" title="inicio"></i>
+                    <h4>Inicio</h4>
+                </div>
+                
+            </a>
+            <a href="">
+                <div class="option">
+                    <i class="fa-solid fa-briefcase" title="Portafolio de clientes"></i>
+                    <h4>Portafolio de clientes</h4>
+                </div>   
+            </a>
+            <a href="{{ url_for('menu.prospectar') }}">
+                <div class= "option">
+                    <i class="fa-solid fa-user-plus" title="Prospectar"></i>
+                    <h4>Prospectar</h4>
+                </div>   
+            </a>
+            <a href="">
+                <div class="option">
+                    <i class="fa-solid fa-money-check-dollar" title="Simulador Financiación"></i>
+                    <h4>Simulador Financiación</h4>
+                </div>
+            </a>
+            <a href="">
+                <div class="option">
+                    <i class="fa-solid fa-route" title="Agenda de visitas"></i>
+                    <h4>Agenda de visitas</h4>
+                </div>
+            </a>
+            <a href="">
+                <div class="option">
+                    <i class="fa-solid fa-chart-line" title="reportes"></i>
+                    <h4>Reportes</h4>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/eventos_menu.js') }}"></script>
+</body>
+</html>
