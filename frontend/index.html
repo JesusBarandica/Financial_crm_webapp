@@ -2,23 +2,28 @@
 <html lang="en">
 <head>
     <link href="{{ url_for('static', filename='css/index_style.css') }}"  rel="stylesheet" type="text/css">
+    {% block extra_css %} {% endblock %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard principal</title>
+    <title>{% block title %}  Dashboard principal {% endblock %}</title>
     <script src="https://kit.fontawesome.com/c0ea10251b.js" crossorigin="anonymous"></script>
 </head>
 <body id="body">
     <header >
-        
-    </header>
-
-    <div class="menu-site" id="menu_site">
         <div class="icon-menu">
             <i class="fa-solid fa-bars" id="btn_open"></i>
         </div>
+        <div class="menu_header">
+            <img class= "imagen_usuario" src="{{ url_for('static', filename='image/pic_test.png') }}" alt="user">
+            <p> <strong> {{ data["nombre"] ~ " " ~ data["apellido"] }} </strong> </p>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>  
+    </header>
+
+    <div class="menu-site" id="menu_site">
         <div class="menu-option">
-            <a href="" class="selected">
+            <a href="{{ url_for('menu.index') }}" class="selected">
                 <div class="option">
                     <i class="fa-solid fa-house" title="inicio"></i>
                     <h4>Inicio</h4>
@@ -58,7 +63,7 @@
 
         </div>
     </div>
-
+    {% block content %} {% endblock %}
     <script src="{{ url_for('static', filename='scripts/eventos_menu.js') }}"></script>
 </body>
 </html>

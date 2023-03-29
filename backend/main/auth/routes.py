@@ -44,6 +44,9 @@ def login():
             "access_token": access_token,
             "role": usuario.role
         }
+
+        session["data"] = data
+        
         return redirect(url_for('menu.index'))
     
     else:
