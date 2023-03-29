@@ -1,5 +1,6 @@
 from .. import db
 import datetime as dt
+from flask import session
 
 class Prospectos(db.Model):
     
@@ -43,20 +44,20 @@ class Prospectos(db.Model):
     @staticmethod
     def from_json(prospecto_json):
 
-        fecha_prospeccion = prospecto_json.get("fecha_prospeccion")
-        id = prospecto_json.get("id")
-        Concesionario_aliado = prospecto_json.get("concesionario_aliado")
-        ejecutivo = 
-        tipo_identi = prospecto_json.get("tipo_identi")
-        identificacion = prospecto_json.get("identificacion")
-        nombre = prospecto_json.get("nombre")
-        segundo_nombre = prospecto_json.get("segundo_nombre")
-        primer_apellido = prospecto_json.get("primer_apellido")
-        segundo_apellido = prospecto_json.get("segundo_apellido")
-        celular = prospecto_json.get("celular")
-        email = prospecto_json.get("email")
-        perfil = prospecto_json.get("perfil")
-        vendedor = prospecto_json.get("vendedor")
+        fecha_prospeccion = str(prospecto_json.get("fecha_prospeccion"))
+        id = int(prospecto_json.get("id"))
+        Concesionario_aliado = int(prospecto_json.get("concesionario_aliado"))
+        ejecutivo = int(session.get("data"))
+        tipo_identi = int(prospecto_json.get("tipo_identi"))
+        identificacion = str(prospecto_json.get("identificacion"))
+        nombre = str(prospecto_json.get("nombre"))
+        segundo_nombre = str(prospecto_json.get("segundo_nombre"))
+        primer_apellido = str(prospecto_json.get("primer_apellido"))
+        segundo_apellido = str(prospecto_json.get("segundo_apellido"))
+        celular = str(prospecto_json.get("celular"))
+        email = str(prospecto_json.get("email"))
+        perfil = int(prospecto_json.get("perfil"))
+        vendedor = int(prospecto_json.get("vendedor"))
 
         return Prospectos(
             fecha_prospeccion = fecha_prospeccion,

@@ -1,133 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="{{ url_for('static', filename='css/prospectar_style.css') }}" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospectar</title>
-    <script src="https://kit.fontawesome.com/c0ea10251b.js" crossorigin="anonymous"></script>
-</head>
-<body id="body">
-    <header >
-        
-    </header>
+{% extends "index.html" %}
 
-    <div class="menu-site" id="menu_site">
-        <div class="icon-menu">
-            <i class="fa-solid fa-bars" id="btn_open"></i>
-        </div>
-        <div class="menu-option">
-            <a href="{{ url_for('menu.index') }}" class="selected">
-                <div class="option">
-                    <i class="fa-solid fa-house" title="inicio"></i>
-                    <h4>Inicio</h4>
-                </div>
-                
-            </a>
-            <a href="">
-                <div class="option">
-                    <i class="fa-solid fa-briefcase" title="Portafolio de clientes"></i>
-                    <h4>Portafolio de clientes</h4>
-                </div>   
-            </a>
-            <a href="{{ url_for('menu.prospectar') }}">
-                <div class='option'>
-                    <i class="fa-solid fa-user-plus" title="Prospectar"></i>
-                    <h4>Prospectar</h4>
-                </div>   
-            </a>
-            <a href="">
-                <div class="option">
-                    <i class="fa-solid fa-money-check-dollar" title="Simulador Financiación"></i>
-                    <h4>Simulador Financiación</h4>
-                </div>
-            </a>
-            <a href="">
-                <div class="option">
-                    <i class="fa-solid fa-route" title="Agenda de visitas"></i>
-                    <h4>Agenda de visitas</h4>
-                </div>
-            </a>
-            <a href="">
-                <div class="option">
-                    <i class="fa-solid fa-chart-line" title="reportes"></i>
-                    <h4>Reportes</h4>
-                </div>
-            </a>
+{% block extra_css %} 
+    <link href="{{ url_for('static', filename='css/prospectar_style3.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-        </div>
-    </div>
-    <div class=caja_pricipal>
-        <img class="logo" src="{{ url_for('static',filename='image/logo.svg') }}" alt="Logo empresarial">
-        <h1 class="titulo">PROSPECTAR</h1>
-    </div>  
-    
-    <fieldset class="campo_formulario" >
-        <legend class="leyenda"><h3>Datos Cliente</h3></legend>
-        <form action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST" id="form_prospectar">
-            <label class= etiquetas for=""><b> Tipo de identificación</b></label>
-            <label class= etiquetas for=""><b>Cedula</b></label>
-            <br>
-            <select name="tipo_identi" id="">
-                <option value=></option>
-                <option value="1">Cedula de ciudadania</option>
-            </select>     
-            <input class="campos" type="number" name="identificacion" min="1"/>       
-            <br>
-            <br>
-            <label class= etiquetas for=""><b>Nombre </b></label>
-            <label class= etiquetas for=""><b>Segundo nombre</b></label>
-            <br>    
-            <input class="campos" type="text" name="nombre"/> 
-            <input class="campos" type="text" name="segundo_nombre" /> 
-            <br><br>
-            <label class= etiquetas for=""><b>Apellido</b></label>
-            <label class= etiquetas for=""><b>Segundo apellido</b></label>
-            <br>
-            <input class="campos" type="text" name="primer_apellido"/>
-            <input class="campos" type="text" name="segundo_apellido"/> 
-            <br><br>
-            <label class= etiquetas for=""><b>Celular</b></label>
-            <label class= etiquetas for=""><b>Email</b></label>
-            <br>
-            <input class="campos" type="text" minlength="10" name="celular"/>
-            <input class="campos" type="email" name="email"/>
+{% block title %} Prospectar {% endblock %}
 
-            <br><br>
-            <label class= etiquetas for=""><b>Perfil</b></label>
-            <label class= etiquetas for=""><b>Concesionario</b></label>
-            <br><br>
-            <select name="perfil" id="">
-                <option></option>
-                <option value="2">Propietario de taxis</option>
-                <option value="3">Conductor de taxis</option>
-                <option value="1">Asalariado</option>
-                <option value="4">Pensionado</option>
-                <option value="5">Independiente</option>
-                <option value="6">Prestación de servicios</option>
-            </select>
-            <select name="concesionario_aliado" id="concesionario_aliado">
-                {% for concesionario in concesionarios %}
-                    <option value=""></option>
-                    <option value="{{ concesionario[0] }}">{{ concesionario[1] }}</option>
-                {% endfor %}
-            </select>
-            <br><br>
-            <label class= etiquetas for=""><b>vendedor</b></label>
-            <br><br>
-            <select name="vendedor" id="vendedor">
-                {% for vendedor in list_vendedores %}
-                    <option value=""></option>
-                    <option value= "{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>
-                {% endfor %}
-            </select>
-            <br><br><br>
-            <input class="boton" type="submit" value="Prospectar"/>
+{% block content %}
+<div class=caja_pricipal>
+    <img class="logo" src="{{ url_for('static',filename='image/logo.svg') }}" alt="Logo empresarial">
+    <h1 class="titulo">PROSPECTAR</h1>
+</div>  
 
-        </form>
-    </fieldset>
-    <script src="{{ url_for('static',filename='scripts/convertir_to_json.js') }}"></script>
-    <script src="{{ url_for('static',filename='scripts/eventos_menu.js') }}"></script>
-</body>
-</html>
+<fieldset class="campo_formulario" >
+    <legend class="leyenda"><h3>Datos Cliente</h3></legend>
+    <form action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST" id="form_prospectar">
+        <label class= etiquetas for=""><b> Tipo de identificación</b></label>
+        <label class= etiquetas for=""><b>Cedula</b></label>
+        <br>
+        <select name="tipo_identi" id="">
+            <option value=></option>
+            <option value="1">Cedula de ciudadania</option>
+        </select>     
+        <input class="campos" type="number" name="identificacion" min="1"/>       
+        <br>
+        <br>
+        <label class= etiquetas for=""><b>Nombre </b></label>
+        <label class= etiquetas for=""><b>Segundo nombre</b></label>
+        <br>    
+        <input class="campos" type="text" name="nombre"/> 
+        <input class="campos" type="text" name="segundo_nombre" /> 
+        <br><br>
+        <label class= etiquetas for=""><b>Apellido</b></label>
+        <label class= etiquetas for=""><b>Segundo apellido</b></label>
+        <br>
+        <input class="campos" type="text" name="primer_apellido"/>
+        <input class="campos" type="text" name="segundo_apellido"/> 
+        <br><br>
+        <label class= etiquetas for=""><b>Celular</b></label>
+        <label class= etiquetas for=""><b>Email</b></label>
+        <br>
+        <input class="campos" type="text" minlength="10" name="celular"/>
+        <input class="campos" type="email" name="email"/>
+
+        <br><br>
+        <label class= etiquetas for=""><b>Perfil</b></label>
+        <label class= etiquetas for=""><b>Concesionario</b></label>
+        <br><br>
+        <select name="perfil" id="">
+            <option></option>
+            <option value="2">Propietario de taxis</option>
+            <option value="3">Conductor de taxis</option>
+            <option value="1">Asalariado</option>
+            <option value="4">Pensionado</option>
+            <option value="5">Independiente</option>
+            <option value="6">Prestación de servicios</option>
+        </select>
+        <select name="concesionario_aliado" id="concesionario_aliado">
+            {% for concesionario in concesionarios %}
+                <option value=""></option>
+                <option value="{{ concesionario[0] }}">{{ concesionario[1] }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label class= etiquetas for=""><b>vendedor</b></label>
+        <br><br>
+        <select name="vendedor" id="vendedor">
+            {% for vendedor in list_vendedores %}
+                <option value=""></option>
+                <option value= "{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input class="boton" type="submit" value="Prospectar"/>
+
+    </form>
+</fieldset>
+
+{% endblock %}
+

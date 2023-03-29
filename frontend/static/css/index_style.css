@@ -10,21 +10,48 @@
 
 body{
     background-color: white;
-    margin-left: 80%;
+    margin-left: 0%;
+    margin-top: 6%;
     transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 header{
+    background-color: red;
     columns: blue;
     width: 100%;
-    height: 40px;
+    height: 60px;
     display: flex;
     align-items: center;
     position: fixed;
     top: 0;
+    margin-left: 0px;
     z-index: 200;
-
+    
 }
+
+.menu_header{
+    color: white;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-right: 100px;
+}   
+.menu_header img {
+    margin-right: 10px;
+}
+.menu_header p {
+    margin-right: 5px;
+    border-color: black;
+}
+.menu_header p {
+    margin-left: 5px;
+}
+.imagen_usuario{
+    height: 55px;
+    width: 55px;
+}
+
 .icon-menu{
     width: 50px;
     height: 100%;
@@ -33,9 +60,12 @@ header{
     align-items: center;
     transform: translateX(10px);
     background-color: red;
+    margin-right: 1155px;
+    margin-left: 25px;
 }
 
 .icon-menu i{
+    color: white;
     font-size: 20px;
     cursor: pointer;
     position: absolute;
@@ -43,11 +73,11 @@ header{
 
 .menu-site{
     width: 63px;
-    height: 100%;
+    height: 93%;
     background: red;
     position: fixed;
     z-index: 300;
-    top: 0;
+    top: 9%;
     left: 0;
     color: white;
     font-size: 18px;
@@ -74,7 +104,7 @@ header{
 .menu-option{
     padding: 20px 10px;
     position: absolute;
-    top: 80px;
+    top: 10px;
 }
 
 .menu-option a{
@@ -125,10 +155,10 @@ a.selected{
 
 /* clases para usar en javascript*/
 
-.body_move{
+/*.body_move{
     margin-left: 250px;
-}
+}*/
 
 .menu-site_move{
-    width: 250px;
+    width: 300px;
 }
