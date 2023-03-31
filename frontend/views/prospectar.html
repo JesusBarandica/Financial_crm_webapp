@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
-{% block extra_css %} 
-    <link href="{{ url_for('static', filename='css/prospectar_style3.css') }}" rel="stylesheet" type="text/css">
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/prospectar_style3.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %} Prospectar {% endblock %}
@@ -10,72 +10,93 @@
 <div class=caja_pricipal>
     <img class="logo" src="{{ url_for('static',filename='image/logo.svg') }}" alt="Logo empresarial">
     <h1 class="titulo">PROSPECTAR</h1>
-</div>  
+</div>
 
-<fieldset class="campo_formulario" >
-    <legend class="leyenda"><h3>Datos Cliente</h3></legend>
-    <form action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST" id="form_prospectar">
-        <label class= etiquetas for=""><b> Tipo de identificación</b></label>
-        <label class= etiquetas for=""><b>Cedula</b></label>
-        <br>
-        <select name="tipo_identi" id="">
-            <option value=></option>
-            <option value="1">Cedula de ciudadania</option>
-        </select>     
-        <input class="campos" type="number" name="identificacion" min="1"/>       
-        <br>
-        <br>
-        <label class= etiquetas for=""><b>Nombre </b></label>
-        <label class= etiquetas for=""><b>Segundo nombre</b></label>
-        <br>    
-        <input class="campos" type="text" name="nombre"/> 
-        <input class="campos" type="text" name="segundo_nombre" /> 
-        <br><br>
-        <label class= etiquetas for=""><b>Apellido</b></label>
-        <label class= etiquetas for=""><b>Segundo apellido</b></label>
-        <br>
-        <input class="campos" type="text" name="primer_apellido"/>
-        <input class="campos" type="text" name="segundo_apellido"/> 
-        <br><br>
-        <label class= etiquetas for=""><b>Celular</b></label>
-        <label class= etiquetas for=""><b>Email</b></label>
-        <br>
-        <input class="campos" type="text" minlength="10" name="celular"/>
-        <input class="campos" type="email" name="email"/>
-
-        <br><br>
-        <label class= etiquetas for=""><b>Perfil</b></label>
-        <label class= etiquetas for=""><b>Concesionario</b></label>
-        <br><br>
-        <select name="perfil" id="">
-            <option></option>
-            <option value="2">Propietario de taxis</option>
-            <option value="3">Conductor de taxis</option>
-            <option value="1">Asalariado</option>
-            <option value="4">Pensionado</option>
-            <option value="5">Independiente</option>
-            <option value="6">Prestación de servicios</option>
-        </select>
-        <select name="concesionario_aliado" id="concesionario_aliado">
-            {% for concesionario in concesionarios %}
-                <option value=""></option>
-                <option value="{{ concesionario[0] }}">{{ concesionario[1] }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        <label class= etiquetas for=""><b>vendedor</b></label>
-        <br><br>
-        <select name="vendedor" id="vendedor">
-            {% for vendedor in list_vendedores %}
-                <option value=""></option>
-                <option value= "{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <input class="boton" type="submit" value="Prospectar"/>
-
+<fieldset>
+    <legend>Datos del prospecto</legend>
+    <form class= "principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST">
+        <div class="form-group">
+            <label for="tipo_identi">Tipo de identificación:</label>
+            <select name="tipo_identi" id="tipo_identi" class="form-control" required>
+                <option value="">Seleccione una opción</option>
+                <option value="CC">Cédula de ciudadanía</option>
+            </select>
+            <input type="number" name="identificacion" id="identificacion" class="form-control"
+                placeholder="Número de identificación" required min="1">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="segundo_nombre">Segundo nombre:</label>
+                <input type="text" name="segundo_nombre" id="segundo_nombre" class="form-control"
+                    placeholder="Segundo nombre" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="primer_apellido">Primer apellido:</label>
+                <input type="text" name="primer_apellido" id="primer_apellido" class="form-control"
+                    placeholder="Primer apellido" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="segundo_apellido">Segundo apellido:</label>
+                <input type="text" name="segundo_apellido" id="segundo_apellido" class="form-control"
+                    placeholder="Segundo apellido" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="celular">Celular:</label>
+                <input type="tel" name="celular" id="celular" class="form-control" placeholder="Número de celular"
+                    required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Correo electrónico"
+                    required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="perfil">Perfil:</label>
+                <select name="perfil" id="perfil" class="form-control" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="2">Propietario de taxis</option>
+                    <option value="3">Conductor de taxis</option>
+                    <option value="1">Asalariado</option>
+                    <option value="4">Pensionado</option>
+                    <option value="5">Independiente</option>
+                    <option value="6">Prestación de servicios</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="concesionario_aliado">Concesionario</label>
+                <select name="concesionario_aliado" id="concesionario_aliado" class="form-control" required>
+                    "<option value="">Seleccione una opción</option>"
+                    {% for concesionario in concesionarios %}
+                    "<option value="{{ concesionario[0] }}">{{ concesionario[1] }}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="vendedor"><b>Vendedor</b></label>
+                <select name="vendedor" id="vendedor" class="form-control" required>
+                    "<option value="">Seleccione una opción</option>"
+                    {% for vendedor in list_vendedores %}
+                    "<option value= "{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="container-button">
+            <input class="boton" type="submit" value="Prospectar">
+        </div>
     </form>
 </fieldset>
 
 {% endblock %}
-
