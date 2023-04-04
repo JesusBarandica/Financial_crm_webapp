@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block extra_css %}
-<link href="{{ url_for('static', filename='css/prospectar_style3.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='css/prospectar_style.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %} Prospectar {% endblock %}
@@ -14,12 +14,12 @@
 
 <fieldset>
     <legend>Datos del prospecto</legend>
-    <form class= "principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST">
+    <form class= "principal-form" id="principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST">
         <div class="form-group">
             <label for="tipo_identi">Tipo de identificación:</label>
             <select name="tipo_identi" id="tipo_identi" class="form-control" required>
                 <option value="">Seleccione una opción</option>
-                <option value="CC">Cédula de ciudadanía</option>
+                <option value="1">Cédula de ciudadanía</option>
             </select>
             <input type="number" name="identificacion" id="identificacion" class="form-control"
                 placeholder="Número de identificación" required min="1">
@@ -50,7 +50,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="celular">Celular:</label>
-                <input type="tel" name="celular" id="celular" class="form-control" placeholder="Número de celular"
+                <input type="text" name="celular" id="celular" class="form-control" placeholder="Número de celular"
                     required>
             </div>
             <div class="form-group col-md-6">

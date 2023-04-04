@@ -27,3 +27,7 @@ def prospectar():
     return render_template('views/prospectar.html', list_vendedores=list_vendedores, concesionarios=concesionarios, data=data)
 
 
+@menu.route("/portafolio")
+def portafolio():
+    data = session.get("data")
+    return render_template('views/portafolio.html',data=data)
