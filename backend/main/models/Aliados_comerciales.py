@@ -9,5 +9,7 @@ class Aliados_comerciales(db.Model):
     celular = db.Column(db.String(15), nullable=False)
     telefono = db.Column(db.String(15), nullable=False)
 
+    _static_cache_key = "Aliados_comerciales"
+
     def __repr__(self) -> str:
         return super().__repr__()

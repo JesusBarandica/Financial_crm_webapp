@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    justify-content: center; /* Centrar las tarjetas en el contenedor */
+    height: 200px;
+    width: 980px;
+    margin: auto;
+  }
+  
+.row-flex-nowrap {
+    display: flex;
+    white-space: nowrap; /* Evitar que las tarjetas se dividan en varias líneas */
+    width: 900px;
+    height: 180px;
+    margin-left: 200px;
+  }
+  
+.card-card-small {
+    width: 90%; /* Ancho de cada tarjeta (30% del ancho del contenedor) */
+    height: calc(100% - 20px); /* Alto de cada tarjeta (100% - 20px de margen) */
+    margin-right: 20px; /* Espacio entre cada tarjeta */
+    border: 1px solid #ccc; /* Agregar borde a cada tarjeta */
+    flex: 1; /* Establecer el tamaño de las tarjetas al mismo valor */
+    margin-top: 10px;
+  }
+
+.container-cards{
+    width: 300px;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+}
+  
+.card {
+    height: 100%;
+  }
+  
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    height: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+.card-title i{
+    height: 30PX;
+    width: 30px;
+    margin-right: 10px;
+  }
+
+.card-body{
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #be1b1b;
+    border-radius: 4%;
+    border: #757575;
+    border-color: #757575;
+}
+  
+.card-text {
+    font-size: 16px;
+    text-align: justify;
+    height: 120px;
+    word-wrap: break-word;
+  }
+    
+.tabla-clientes {
+    font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    height: 70%;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin-left: 100px;
+    justify-content: flex-end;
+
+  }
+
+  .tabla-clientes thead th {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    color: #757575;
+    background-color: #f2f2f2;
+    padding: 12px;
+  }
+
+  .tabla-clientes tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .tabla-clientes tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .tabla-clientes tbody td {
+    font-size: 14px;
+    color: #333;
+    padding: 12px;
+  }
+
+  .tabla-clientes tbody tr:hover {
+    background-color: #f5f5f5;
+  }

@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template, session
-from main.models import Aliados_comercialesModel, VendedoresModel
+from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosModel
+from sqlalchemy import column
+from datetime import datetime
+from .. import db
 
 
 
@@ -30,4 +33,16 @@ def prospectar():
 @menu.route("/portafolio")
 def portafolio():
     data = session.get("data")
-    return render_template('views/portafolio.html',data=data)
+    ejecutivo_session = int(data["id"])
+    prospectos_ejecutivo = ProspectosModel.query.filter(ProspectosModel.ejecutivo
+                           == ejecutivo_session).with_entities(
+                           db.func.DATE(ProspectosModel.fecha_prospeccion).label('fecha_prospecto'),
+                           ProspectosModel.identificacion,
+                           ProspectosModel.nombre,
+                           ProspectosModel.primer_apellido,
+                           ProspectosModel.segundo_apellido,
+                           ProspectosModel.perfil,
+                           ProspectosModel.celular,
+                           ).all()
+    
+    return render_template('views/portafolio.html',data=data, prospectos_ejecutivo=prospectos_ejecutivo)

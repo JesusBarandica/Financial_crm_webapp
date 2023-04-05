@@ -5,38 +5,73 @@
 {% endblock %}
 
 {% block title %} Portafolio {% endblock %}
+{% block script %} src="https://kit.fontawesome.com/c0ea10251b.js" crossorigin="anonymous" {% endblock %}
 
 {% block content %}
-<table>
+<div class="container">
+  <div class="row-flex-nowrap">
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <div class="card-title">
+            <i class="fa-sharp fa-regular fa-bullseye-arrow"></i>
+            <h5>META</h5>
+          </div>
+          <p class="card-text">espacio texto</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <h5 class="card-title">AVANCE</h5>
+          <p class="card-text">espacio texto</p>
+        </div>
+      </div>
+    </div>
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <h5 class="card-title">COLOCACIÓN</h5>
+          <p class="card-text">espacio texto </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="tabla-clientes">
     <thead>
       <tr>
-        <th>Fecha de prospección</th>
-        <th>Concesionario aliado</th>
+        <th>Fecha prospecto</th>
         <th>Identificación</th>
         <th>Nombre</th>
-        <th>Segundo nombre</th>
-        <th>Primer apellido</th>
-        <th>Segundo apellido</th>
-        <th>Celular</th>
-        <th>Email</th>
         <th>Perfil</th>
-        <th>Vendedor</th>
+        <th>Celular</th>
+        <th>Concesionario</th>
+        <th>Estado</th>
+        <th>Etapa</th>        
       </tr>
     </thead>
     <tbody>
+      {% for prospecto in prospectos_ejecutivo %}
       <tr>
-        <td>{{ fecha_prospeccion }}</td>
-        <td>1</td>
-        <td>123456789</td>
-        <td>Juan</td>
-        <td>Pablo</td>
-        <td>García</td>
-        <td>Hernández</td>
-        <td>1234567890</td>
-        <td>juanpgarcia@mail.com</td>
-        <td>1</td>
-        <td>1</td>
+        <td>{{ prospecto[0] }}</td>
+        <td>{{ prospecto[1] }}</td>
+        <td>{{ prospecto[2] ~ " " ~ prospecto[3] ~ " " ~ prospecto[4] }}</td>
+        <td>{{ prospecto[5] }}</td>
+        <td>{{ prospecto[6] }}</td>
+        <td></td>
+        <td>viable</td>
+        <td>
+          <select name="" id="">
+            <option value="">...</option>
+            <option value="">Busqueda de documentos</option>
+            <option value="">Radicación credito</option>
+            <option value="">Estudio</option>
+          </select>
+        </td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 
