@@ -3,6 +3,7 @@ from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosMod
 from sqlalchemy import column
 from datetime import datetime
 from .. import db
+from flask_sqlalchemy import pagination
 
 
 
@@ -32,6 +33,7 @@ def prospectar():
 
 @menu.route("/portafolio")
 def portafolio():
+
     data = session.get("data")
     ejecutivo_session = int(data["id"])
     prospectos_ejecutivo = ProspectosModel.query.filter(ProspectosModel.ejecutivo
