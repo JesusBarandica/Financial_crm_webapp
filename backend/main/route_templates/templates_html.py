@@ -1,9 +1,7 @@
 from flask import Blueprint, render_template, session
 from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosModel
-from sqlalchemy import column
-from datetime import datetime
 from .. import db
-from flask_sqlalchemy import pagination
+from flask_login import current_user, login_required
 
 
 
@@ -16,6 +14,7 @@ def login_init():
 
 
 @menu.route("/homepage")
+@login_required
 def index():
     data = session.get("data")
     print(data["id"])
@@ -24,6 +23,7 @@ def index():
 
 
 @menu.route("/prospectar")
+@login_required
 def prospectar():
     data = session.get("data")
     concesionarios = Aliados_comercialesModel.query.with_entities(Aliados_comercialesModel.id, Aliados_comercialesModel.aliado).all()
@@ -32,6 +32,7 @@ def prospectar():
 
 
 @menu.route("/portafolio")
+@login_required
 def portafolio():
 
     data = session.get("data")

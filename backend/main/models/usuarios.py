@@ -1,9 +1,10 @@
 from .. import db
 import datetime as dt
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import UserMixin
 
 
-class Usuarios(db.Model):
+class Usuarios(UserMixin, db.Model):
     
     fecha_registro = db.Column(db.DateTime,default=dt.datetime.now(),nullable=False) 
     id = db.Column(db.Integer,primary_key=True,autoincrement=True, nullable=False, unique=True)
@@ -28,6 +29,10 @@ class Usuarios(db.Model):
     
     def validate_pass(self,password):
         return check_password_hash(self.password,password)
+
+    def get_id(self):
+        return str(self.id)
+
 
     def to_json(self):
         usuario = {

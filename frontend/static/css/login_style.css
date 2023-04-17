@@ -40,3 +40,45 @@
     margin-top: 20px;
     margin-left: 75px;
 }
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 9999;
+    height: 60px;
+    width: 270px;
+  }
+  
+  .alert ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .alert li {
+    margin: 0.5rem 0;
+  }
+  
+  .alert-warning {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+  }
+  
+  .close {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-left: 220px;
+    margin-top: -15px;
+    height: 20px;
+    width: 22px;
+  }
+
+
+
+
+

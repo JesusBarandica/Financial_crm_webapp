@@ -1,7 +1,8 @@
-from flask import request, Blueprint, redirect, render_template, session, url_for, jsonify, json
+from flask import request, Blueprint, redirect, session, url_for, flash
 from .. import db
 from main.models import UsuariosModel
 from flask_jwt_extended import create_access_token
+from flask_login import login_user, logout_user, login_required
 
 
 auth = Blueprint("auth",__name__,url_prefix="/auth")
@@ -29,10 +30,14 @@ def register():
 
 @auth.route("/login",methods=["POST"])
 def login():
-    usuario = db.session.query(UsuariosModel).filter(UsuariosModel.email == request.form.get("email")).first_or_404()
+    usuario = db.session.query(UsuariosModel).filter(UsuariosModel.email == request.form.get("email")).first()
 
-    if usuario.validate_pass(request.form.get("password")):
-        
+    if usuario == None or not usuario.validate_pass(request.form.get("password")):
+
+        flash("Usuario o clave incorrecto")
+        return redirect(url_for('menu.login_init'))
+    
+    else:
         access_token = create_access_token(identity=str(usuario.id))
 
         session['access_token'] = access_token
@@ -46,10 +51,18 @@ def login():
         }
 
         session["data"] = data
+
+        login_user(usuario)
         
         return redirect(url_for('menu.index'))
+
     
-    else:
-        return "incorrect password"
+    
+
+@auth.route('/logout',methods=['GET'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('menu.login_init'))
     
 

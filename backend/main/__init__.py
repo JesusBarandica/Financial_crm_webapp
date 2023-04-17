@@ -12,6 +12,10 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 ### para configurar el tiempo que dura la sesión
 import datetime
+### Se importa flask-login para administrar las autenticaciones a nuestra aplicación
+from flask_login import LoginManager
+### importamos modelo usuario para crear load_user
+
 
 # instanciamos SQLAlchSQLAlchemyemy  para crear base datos.
 db = SQLAlchemy()
@@ -21,6 +25,11 @@ api = Api()
 
 #instanciamos el jwtmanager para agregarla a la app
 jwt = JWTManager()
+
+#instaciamos login-manager para manejar la autenticación de usuarios
+login_manager = LoginManager()
+
+
 
 
 def create_app():
@@ -88,6 +97,15 @@ def create_app():
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(seconds= int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES")))
 
     jwt.init_app(app)
+
+    #inicializamos nuestro loginmanager para que nuestra app la reconosca.
+    from main.models import UsuariosModel
+    @login_manager.user_loader
+    def load_user(user_id):
+        return UsuariosModel.query.get(int(user_id))
+    
+    login_manager.login_view = "menu.login_init"
+    login_manager.init_app(app)
     
     return app
 
