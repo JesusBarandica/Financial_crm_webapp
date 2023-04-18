@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
 <script src="{{ url_for('static', filename='scripts/datatable.js') }}"></script>
+<script src="https://kit.fontawesome.com/c0ea10251b.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 
@@ -21,26 +22,54 @@
       <div class="card-card-small">
         <div class="card-body">
           <div class="card-title">
-            <i class="fa-sharp fa-regular fa-bullseye-arrow"></i>
+            <i class="fa-solid fa-bullseye"></i>
             <h5>META</h5>
           </div>
+          <div class="tablero_metas">
+              <div class="iconos_tableros"><i class="fa-solid fa-taxi"></i><i class="fa-solid fa-file-import"></i><i class="fa-sharp fa-solid fa-person-circle-check"></i></div>
+              <div class="nombres_kpi"><h5>Prospectos</h5><h5>Radicados</h5><h5>Aprobados</h5></div>
+              <div class="value_kpi"><h5>100</h5><h5>50</h5><h5>30</h5></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <div class="card-title">
+            <i class="fa-sharp fa-solid fa-bars-progress"></i>
+            <h5>AVANCE</h5>
+          </div>
+          <div class="tablero_metas">
+            <div class="iconos_tableros"><i class="fa-solid fa-taxi"></i><i class="fa-solid fa-file-import"></i><i class="fa-sharp fa-solid fa-person-circle-check"></i></div>
+            <div class="nombres_kpi"><h5>Prospectos</h5><h5>Radicados</h5><h5>Aprobados</h5></div>
+            <div class="value_kpi"><h5>100</h5><h5>50</h5><h5>30</h5></div>
+            <div class="semaforo-kpi"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <div class="card-title">
+            <i class="fa-solid fa-money-bill-1"></i>
+            <h5>COLOCACIÓN</h5>
+          </div>
+          <div class="card_colocacion">
+             <p class="meta">AVANCE  $ 200 M</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-cards">
+      <div class="card-card-small">
+        <div class="card-body">
+          <div class="card-title">
+            <i class="fa-solid fa-handshake"></i>
+            <h5>  GESTIÓN</h5>
+          </div>
           <p class="card-text">espacio texto</i></p>
-        </div>
-      </div>
-    </div>
-    <div class="container-cards">
-      <div class="card-card-small">
-        <div class="card-body">
-          <h5 class="card-title">AVANCE</h5>
-          <p class="card-text">espacio texto</p>
-        </div>
-      </div>
-    </div>
-    <div class="container-cards">
-      <div class="card-card-small">
-        <div class="card-body">
-          <h5 class="card-title">COLOCACIÓN</h5>
-          <p class="card-text">espacio texto </p>
         </div>
       </div>
     </div>

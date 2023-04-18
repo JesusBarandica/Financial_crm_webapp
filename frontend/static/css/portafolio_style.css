@@ -15,19 +15,23 @@
 .row-flex-nowrap {
     display: flex;
     white-space: nowrap; /* Evitar que las tarjetas se dividan en varias líneas */
-    width: 900px;
+    width: 1100px;
     height: 180px;
-    margin-left: 200px;
+    margin-left: 110px;
   }
   
 .card-card-small {
     width: 90%; /* Ancho de cada tarjeta (30% del ancho del contenedor) */
     height: calc(100% - 20px); /* Alto de cada tarjeta (100% - 20px de margen) */
     margin-right: 20px; /* Espacio entre cada tarjeta */
-    border: 1px solid #ccc; /* Agregar borde a cada tarjeta */
+    border: 0px solid rgba(243, 243, 243, 0); /* Agregar borde a cada tarjeta */
     flex: 1; /* Establecer el tamaño de las tarjetas al mismo valor */
-    margin-top: 10px;
+    margin-top: 10px;   
   }
+
+.card-card-small :hover{
+  background-color: rgb(219, 210, 210);
+}
 
 .container-cards{
     width: 300px;
@@ -43,27 +47,108 @@
 .card-title {
     font-size: 20px;
     font-weight: bold;
-    height: 35px;
+    height: 40px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
   }
 
 .card-title i{
+    margin-top: 5px;
     height: 30PX;
     width: 30px;
-    margin-right: 10px;
+    font-size: 25px;
+    margin-right: 5PX;
   }
+
+.card-title H5{
+    margin-top: 5px;
+    font-weight: 600;
+}
+.tablero_metas{
+  display: flex;
+  justify-content: center;
+}
+
+.tablero_metas .iconos_tableros i{
+  display: block;
+  margin-bottom: 15px;
+  font-size: 19px;
+  margin-right: 10px;
+}
+
+.tablero_metas .nombres_kpi h5{
+  text-align: left;
+  margin-right: 10px;
+}
+
+.tablero_metas .value_kpi h5{
+  text-align: right;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.tablero_metas .semaforo-kpi div{
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  border: 1px;
+  border-color: black;
+  box-shadow: rgb(211, 208, 208);
+  margin-bottom: 13px;
+}
+
+
+.list-icon{
+  list-style-type: none;
+  align-content: space-between;
+}
+.list-icon li{
+  display: flex;
+  
+  width: 250;
+
+}
+
+.list-icon li i{
+  font-size: 20px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.list-icon li h5{
+  font-size: 20px;
+  font-family: "Helvetica", sans-serif;
+  margin-right: 10px;
+}
+
+.list-icon li .semaforo{
+
+
+}
+
+.card_colocacion{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.card_colocacion .meta{
+  font-size: x-large;
+  font-weight: 600;
+}
 
 .card-body{
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    background-color: #be1b1b;
+    background-color: #c2c2c2;
     border-radius: 4%;
     border: #757575;
     border-color: #757575;
 }
+
+
   
 .card-text {
     font-size: 16px;
