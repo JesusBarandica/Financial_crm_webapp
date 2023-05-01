@@ -41,7 +41,7 @@ fieldset {
     padding: 150px;
     margin-bottom: 20px;
     width: 800px;
-    height: 665px;
+    height: 730px;
     margin-left: 325px;
 }
 
@@ -101,6 +101,10 @@ input[type="submit"]:hover {
     background-color: #be1b1b;
     border-color: #181313;
     border: 2px solid #fdfafaec;
+}
+
+#vendedor{
+    width: 550px;
 }
 
 .form-row {

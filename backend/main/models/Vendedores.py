@@ -7,6 +7,8 @@ class Vendedores(db.Model):
     cedula = db.Column(db.String(15), nullable=False, unique=True)
     nombres = db.Column(db.String(50), nullable=False)
     apellidos = db.Column(db.String(50), nullable=False)
+
+    _static_cache_key = "Vendedores"
     
     def __repr__(self) -> str:
         return super().__repr__()

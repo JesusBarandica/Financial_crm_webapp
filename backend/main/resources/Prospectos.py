@@ -13,6 +13,7 @@ Resource_prospectos = Blueprint("Resource_prospectos", __name__)
 @Resource_prospectos.route("/addprospecto", methods=["POST"])   
 def addprospecto():
 
+        #datos para registrar prospecto
         Concesionario_aliado = int(request.form.get("concesionario_aliado"))
         ejecutivo = session.get("data")
         tipo_identi = int(request.form.get("tipo_identi"))
@@ -40,8 +41,13 @@ def addprospecto():
             perfil = perfil,
             vendedor = vendedor
         )
-        
+
         db.session.add(prospecto)
         db.session.commit()
+
+        #datos para registrar imagenes
+        cedula_file = request.files["cedula"]
+        consulta_file = request.files["consulta"]
+
         return redirect(url_for('menu.prospectar'))
         

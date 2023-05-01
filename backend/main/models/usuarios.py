@@ -16,8 +16,10 @@ class Usuarios(UserMixin, db.Model):
     role = db.Column(db.String(30),nullable=False)
     password = db.Column(db.String(100),nullable=False)
 
+    _static_cache_key = "Usuarios"
+
     def __repr__(self):
-        return f"Usuarios {Usuarios.nombre}"
+        return Usuarios.__repr__()
     
     @property
     def plain_password(self):

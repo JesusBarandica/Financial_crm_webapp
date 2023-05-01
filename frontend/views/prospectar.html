@@ -14,7 +14,7 @@
 
 <fieldset>
     <legend>Datos del prospecto</legend>
-    <form class= "principal-form" id="principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST">
+    <form class= "principal-form" id="principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="tipo_identi">Tipo de identificación:</label>
             <select name="tipo_identi" id="tipo_identi" class="form-control" required>
@@ -92,6 +92,17 @@
                     {% endfor %}
                 </select>
             </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cedula">Adjuntar cédula</label>
+                <input name="cedula" type="file" accept="image/jpeg, image/png" required >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="consulta">Adjuntar consulta</label>
+                <input name="consulta" type="file" accept="image/jpeg, image/png" required >
+            </div>
+        </div>
         </div>
         <div class="container-button">
             <input class="boton" type="submit" value="Prospectar">
