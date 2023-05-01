@@ -58,10 +58,16 @@ def create_app():
         file = os.open(f"{NAME_DB}", os.O_CREAT )
 
     ###ya con nuestra base de datos creada, configuramos nuestra aplicación
+
     ###desahabilitamos los commit automaticos para nuestra aplicación
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
     ###habilitamos para que nuestra aplicación se conecte a nuestra db en la ruta especificada.
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{PATH}{NAME_DB}"
+
+    #creamos la ruta para cargar archivos en el servidor
+    app.config['UPLOAD_FOLDER'] = os.getenv("ROUTE_IMAGE_PROSPECTOS")
+
     ### inicializamos las configuración que hicimos a nuestra base de datos y las aplicamos
     db.init_app(app)
 
