@@ -10,6 +10,8 @@ from main.models import ProspectosModel, ImagenesModel
 import os
 ### para subir archivos tipo fotos en el servidor
 from werkzeug.utils import secure_filename
+### datetime para manejo de fechas
+import datetime as dt
 
 Resource_prospectos = Blueprint("Resource_prospectos", __name__)
 
@@ -31,54 +33,67 @@ def addprospecto():
         perfil = int(request.form.get("perfil"))
         vendedor = int(request.form.get("vendedor"))
 
-        prospecto  =  ProspectosModel(
-            Concesionario_aliado = Concesionario_aliado,
-            ejecutivo = int(ejecutivo["id"]),
-            tipo_identi = tipo_identi,
-            identificacion = identificacion,
-            nombre = nombre,
-            segundo_nombre = segundo_nombre,
-            primer_apellido = primer_apellido,
-            segundo_apellido = segundo_apellido,
-            celular = celular,
-            email = email,
-            perfil = perfil,
-            vendedor = vendedor
-        )
+        fecha_actual = dt.datetime.today()
 
-        db.session.add(prospecto)
-        db.session.commit()
+        consultado = ProspectosModel.query.filter(db.extract("year", ProspectosModel.fecha_prospeccion) == fecha_actual.year).filter(
+        db.extract("month", ProspectosModel.fecha_prospeccion) == fecha_actual.month).filter(ProspectosModel.identificacion == identificacion).first()
 
-        #datos para registrar imagenes
+        print(consultado.nombre)
 
-        #se instancia ruta para guardar imagenes
-        route_upload =  os.getenv("ROUTE_IMAGE_PROSPECTOS")
+        if consultado == None:
 
-        cedula_file = request.files["cedula"]                                 #imagen de la cedula que se va a guardar
-        name_cedula = secure_filename(request.files["cedula"].filename)       # se crea nombre de cedula seguro
-        add_to_route_cedula = os.path.join(route_upload,name_cedula)          #se agrega a la ruta del servidor la imagen
-        cedula_file.save(add_to_route_cedula)                                 # se guarda archivo en ruta del servidor
+                prospecto  =  ProspectosModel(
+                Concesionario_aliado = Concesionario_aliado,
+                ejecutivo = int(ejecutivo["id"]),
+                tipo_identi = tipo_identi,
+                identificacion = identificacion,
+                nombre = nombre,
+                segundo_nombre = segundo_nombre,
+                primer_apellido = primer_apellido,
+                segundo_apellido = segundo_apellido,
+                celular = celular,
+                email = email,
+                perfil = perfil,
+                vendedor = vendedor
+                )
+
+                db.session.add(prospecto)
+                db.session.commit()
+
+                #datos para registrar imagenes
+
+                #se instancia ruta para guardar imagenes
+                route_upload =  os.getenv("ROUTE_IMAGE_PROSPECTOS")
+
+                cedula_file = request.files["cedula"]                                 #imagen de la cedula que se va a guardar
+                name_cedula = secure_filename(request.files["cedula"].filename)       # se crea nombre de cedula seguro
+                add_to_route_cedula = os.path.join(route_upload,name_cedula)          #se agrega a la ruta del servidor la imagen
+                cedula_file.save(add_to_route_cedula)                                 # se guarda archivo en ruta del servidor
 
 
 
-        consulta_file = request.files["consulta"]                             #imagen de la consulta que se va guardar
-        name_consulta = secure_filename(request.files["consulta"].filename)   #nombre de la consulta
-        add_to_route_consulta = os.path.join(route_upload,name_consulta)      #se agrega a la ruta del servidor la imagen
-        consulta_file.save(add_to_route_consulta)                             # se guarda archivo en ruta del servidor
+                consulta_file = request.files["consulta"]                             #imagen de la consulta que se va guardar
+                name_consulta = secure_filename(request.files["consulta"].filename)   #nombre de la consulta
+                add_to_route_consulta = os.path.join(route_upload,name_consulta)      #se agrega a la ruta del servidor la imagen
+                consulta_file.save(add_to_route_consulta)                             # se guarda archivo en ruta del servidor
 
-        id_prospecto = prospecto.id                                           #id para relacionarlo con el prospecto
+                id_prospecto = prospecto.id                                           #id para relacionarlo con el prospecto
 
 
-        Imagenes = ImagenesModel(
-                id_prospecto = id_prospecto,
-                name_cedula = name_cedula,
-                route_cedula = add_to_route_cedula,
-                name_consulta = name_consulta,
-                route_consulta = add_to_route_consulta
-        )
+                Imagenes = ImagenesModel(
+                        id_prospecto = id_prospecto,
+                        name_cedula = name_cedula,
+                        route_cedula = add_to_route_cedula,
+                        name_consulta = name_consulta,
+                        route_consulta = add_to_route_consulta
+                )
 
-        db.session.add(Imagenes)
-        db.session.commit()
+                db.session.add(Imagenes)
+                db.session.commit()
 
-        return redirect(url_for('menu.prospectar'))
+                return redirect(url_for('menu.prospectar'))
+        
+        else:
+                return "El prospecto ya fue consultado"
+                
         

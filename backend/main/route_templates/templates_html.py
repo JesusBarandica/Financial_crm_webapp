@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session
-from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosModel
+from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosModel, PerfilesModel
 from .. import db
 from flask_login import current_user, login_required
 
@@ -38,14 +38,18 @@ def portafolio():
     data = session.get("data")
     ejecutivo_session = int(data["id"])
     prospectos_ejecutivo = ProspectosModel.query.filter(ProspectosModel.ejecutivo
-                           == ejecutivo_session).with_entities(
+                           == ejecutivo_session).join(
+                           PerfilesModel,ProspectosModel.perfil == PerfilesModel.id).join(
+                           Aliados_comercialesModel, ProspectosModel.Concesionario_aliado == Aliados_comercialesModel.id
+                           ).with_entities(
                            db.func.DATE(ProspectosModel.fecha_prospeccion).label('fecha_prospecto'),
                            ProspectosModel.identificacion,
                            ProspectosModel.nombre,
                            ProspectosModel.primer_apellido,
                            ProspectosModel.segundo_apellido,
-                           ProspectosModel.perfil,
+                           PerfilesModel.nombre_perfil.label("nombre_perfil"),
                            ProspectosModel.celular,
+                           Aliados_comercialesModel.aliado.label("nombre_concesionario")
                            ).all()
     
     return render_template('views/portafolio.html',data=data, prospectos_ejecutivo=prospectos_ejecutivo)
