@@ -1,7 +1,7 @@
 ###Importamos el modulo  resource para crear los recursos de nuestra aplicación de las rutas del objeto cliente
 from flask_restful import Resource
 ###importamos de flask jsonify para serializar objetos a formato json y request para poder recibir las peticiones del cliente
-from flask import jsonify, request, Blueprint, session, redirect, url_for
+from flask import jsonify, request, Blueprint, session, redirect, url_for, flash
 ###importamos la base de datos
 from .. import db
 ###importamos modelo objetivo, en este caso prospecto models y Imagenes model
@@ -38,7 +38,6 @@ def addprospecto():
         consultado = ProspectosModel.query.filter(db.extract("year", ProspectosModel.fecha_prospeccion) == fecha_actual.year).filter(
         db.extract("month", ProspectosModel.fecha_prospeccion) == fecha_actual.month).filter(ProspectosModel.identificacion == identificacion).first()
 
-        print(consultado.nombre)
 
         if consultado == None:
 
@@ -91,9 +90,16 @@ def addprospecto():
                 db.session.add(Imagenes)
                 db.session.commit()
 
+                flash("Prospectado exitosamente")
+
                 return redirect(url_for('menu.prospectar'))
         
         else:
-                return "El prospecto ya fue consultado"
+                flash(f"""El prospecto {consultado.nombre} {consultado.primer_apellido} 
+                        {consultado.segundo_apellido} ya fue consultado el dia {consultado.fecha_prospeccion.date()}
+                        por lo cual es posible consultarlo en los 30 dias posteriores a esta fecha,
+                        en caso de dudas comunicarse con  gerente regional""")
+                
+                return redirect(url_for('menu.prospectar'))
                 
         

@@ -1,3 +1,4 @@
+
 .caja_pricipal{
     margin: auto;
     display: flex;
@@ -15,6 +16,7 @@
     padding: 20px;
     margin-left: 325px;
     margin-bottom: 10px;
+    margin-top: 100px;
 }
 .logo{
     margin: auto;
@@ -130,3 +132,30 @@ input[type="submit"]:hover {
         margin-bottom: 20px;
     }
 }
+
+/*boton de alerta*/
+
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 120px;
+    background-color: #fff;
+    border: 2px solid #f00;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px 16px;
+    margin-top: 5px;
+  }
+  
+  .closebtn:hover {
+    cursor: pointer;
+  }

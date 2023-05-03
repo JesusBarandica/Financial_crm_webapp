@@ -6,7 +6,12 @@
 
 {% block title %} Prospectar {% endblock %}
 
+{% block script %}
+<script src="{{ url_for('static', filename='scripts/mensaje_alerta.js') }}"></script>
+{% endblock %}
+
 {% block content %}
+
 <div class=caja_pricipal>
     <img class="logo" src="{{ url_for('static',filename='image/logo.svg') }}" alt="Logo empresarial">
     <h1 class="titulo">PROSPECTAR</h1>
@@ -14,7 +19,8 @@
 
 <fieldset>
     <legend>Datos del prospecto</legend>
-    <form class= "principal-form" id="principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}" method="POST" enctype="multipart/form-data">
+    <form class="principal-form" id="principal-form" action="{{ url_for('Resource_prospectos.addprospecto') }}"
+        method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="tipo_identi">Tipo de identificación:</label>
             <select name="tipo_identi" id="tipo_identi" class="form-control" required>
@@ -88,7 +94,7 @@
                 <select name="vendedor" id="vendedor" class="form-control" required>
                     "<option value="">Seleccione una opción</option>"
                     {% for vendedor in list_vendedores %}
-                    "<option value= "{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>"
+                    "<option value="{{ vendedor[0] }}">{{ vendedor[1] ~ " " ~ vendedor[2] }}</option>"
                     {% endfor %}
                 </select>
             </div>
@@ -96,11 +102,11 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="cedula">Adjuntar cédula</label>
-                <input name="cedula" type="file" accept="image/jpeg, image/png" required >
+                <input name="cedula" type="file" accept="image/jpeg, image/png" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="consulta">Adjuntar consulta</label>
-                <input name="consulta" type="file" accept="image/jpeg, image/png" required >
+                <input name="consulta" type="file" accept="image/jpeg, image/png" required>
             </div>
         </div>
         </div>
@@ -109,5 +115,16 @@
         </div>
     </form>
 </fieldset>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="alert-box" class="alert">
+    <span class="closebtn" onclick="closeAlert()">&times;</span>
+    {% for message in messages %}
+    <strong>{{ message }}</strong> 
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 {% endblock %}
