@@ -16,9 +16,16 @@
             <i class="fa-solid fa-bars" id="btn_open"></i>
         </div>
         <div class="menu_header">
-            <img class= "imagen_usuario" src="{{ url_for('static', filename='image/pic_test.png') }}" alt="user">
-            <p> <strong> {{ data["nombre"] ~ " " ~ data["apellido"] }} </strong> </p>
-            <i class="fa-solid fa-caret-down"></i>
+            <nav>
+                <ul>
+                    <li><a href="#"><img class= "imagen_usuario" src="{{ url_for('static', filename='image/pic_test.png') }}" alt="user"><h4><strong> {{ data["nombre"] ~ " " ~ data["apellido"] }} </strong> </h4><i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#"><i class="fa-solid fa-gear"></i><h4>Configuración</h4></a></li>
+                            <li><a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i><h4>Cerrar sesión</h4></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>    
         </div>  
     </header>
 

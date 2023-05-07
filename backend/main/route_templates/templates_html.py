@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session
 from main.models import Aliados_comercialesModel, VendedoresModel, ProspectosModel, PerfilesModel
 from .. import db
-from flask_login import current_user, login_required
+from flask_login import login_required
 
 
 
@@ -17,8 +17,6 @@ def login_init():
 @login_required
 def index():
     data = session.get("data")
-    print(data["id"])
-    type(data["id"])
     return render_template('index.html', data=data)
 
 
@@ -51,5 +49,7 @@ def portafolio():
                            ProspectosModel.celular,
                            Aliados_comercialesModel.aliado.label("nombre_concesionario")
                            ).all()
+    
+    print(len(prospectos_ejecutivo))
     
     return render_template('views/portafolio.html',data=data, prospectos_ejecutivo=prospectos_ejecutivo)

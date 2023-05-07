@@ -37,16 +37,93 @@ header{
     display: flex;
     margin-right: 100px;
 }   
+
+nav > ul{
+    height: 100%;
+}
+
+/* menu nav se le quita puntos a listas */
+nav > ul > li{
+    height: 100%;
+    list-style: none;
+    position: relative;
+}
+
+/* elementos con enlance menu nav se coloca uno al lado del otro*/
+nav > ul > li >a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all 300ms ease;
+    align-items: center;
+    color: #ffffffb2;
+}
+
+/*Elementos con enlance menu nav se le cambia color letra después que se les pasa el cursor*/
+nav > ul > li >a:hover{
+    transform: scale(1.1);
+    color: white;
+}
+
+/*Se configura menu desplegable*/
+nav ul li ul {
+    width: 180px;
+    height: 60px;
+    background-color: white;
+    position: absolute;
+    top: 70px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 10;
+    box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.5);
+    transition: all 300ms ease;
+}
+
+nav ul li ul:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid white;
+    position: absolute;
+    top: -12px;
+    left: 142px;
+}
+
+/*Efecto hoover para que aparezca menu desplegable*/
+nav ul li:hover ul {
+    visibility: visible;
+    opacity: 1;
+    top: 60px;
+}
+
+nav ul li ul li{
+    list-style: none;
+    padding: 6px;
+}
+
+nav ul li ul li a{
+    display: flex;
+    color: black;
+    margin-left: 10px;
+}
+
+nav ul li ul li a:hover{
+    background-color: grey;
+    box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.5);
+    color: white;
+}
+
+
+nav ul li ul li a i{
+    margin-right: 7px;
+}
+
 .menu_header img {
     margin-right: 10px;
 }
-.menu_header p {
-    margin-right: 5px;
-    border-color: black;
-}
-.menu_header p {
-    margin-left: 5px;
-}
+
 .imagen_usuario{
     height: 55px;
     width: 55px;

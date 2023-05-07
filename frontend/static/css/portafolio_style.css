@@ -3,6 +3,27 @@
   font-size: inherit;
 }
 
+.menu-option a{
+  text-decoration: inherit;
+}
+
+.menu_header nav ul li a{
+  text-decoration: inherit;
+}
+
+.menu_header nav ul li h4{
+  font-size: inherit;
+}
+
+.menu_header nav ul li ul li{
+  padding: inherit;
+}
+
+.menu_header nav ul li ul li a{
+  margin-left: inherit;
+}
+
+
 .container {
     display: flex;
     justify-content: center; /* Centrar las tarjetas en el contenedor */
@@ -123,10 +144,6 @@
   margin-right: 10px;
 }
 
-.list-icon li .semaforo{
-
-
-}
 
 .card_colocacion{
   text-align: center;
@@ -144,8 +161,8 @@
     height: 100%;
     background-color: #c2c2c2;
     border-radius: 4%;
-    border: #757575;
-    border-color: #757575;
+  
+    box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.5);
 }
 
 
